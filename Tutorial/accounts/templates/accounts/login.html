@@ -1,21 +1,18 @@
-{% extends 'layout.html' %}
+{% extends 'base.html' %}
 
-<!DOCTYPE html>
-<html>
-	<head>
-		{% block title %}
-			Login
-		{% endblock %}
-	</head>
-	<body>
-		{% block content %}
-			<div class="container">
-			Welcome! You can login here!
-			<button class="btn btn-default" type="button" name="button">Login</button>
-			</div>
-			<div class="jumbotron">
-			<h1>Welcome {{myName}}!</h1>
-			</div>
-		{% endblock %}
-	</body>
-</html>
+{% block head %}
+	<title>Login</title>
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<h1>Welcome</h1>
+		<p>You can log in here!</p>
+		<h2>Login</h2>
+		<form method="post">
+			{% csrf_token %}
+			{{ form.as_p }}
+			<button type="submit">Login</button>
+		</form>
+	</div>
+{% endblock %}
