@@ -48,6 +48,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'Tutorial.middleware.LoginRequiredMiddleware'
 ]
 
 ROOT_URLCONF = 'Tutorial.urls'
@@ -123,3 +124,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 LOGIN_REDIRECT_URL = '/account/'
+
+# run < python -m smtpd -n -c DebuggingServer localhost:1025 > in cmd to create smtp server
+EMAIL_HOST = 'localhost'
+EMAIL_PORT = 1025
