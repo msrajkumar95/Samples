@@ -125,6 +125,13 @@ STATIC_URL = '/static/'
 
 LOGIN_REDIRECT_URL = '/account/'
 
+LOGIN_URL = '/account/login/'
+
+LOGIN_EXEMPT_URLS = (
+    r'account/logout/',
+    r'account/register/'
+)
+
 # run < python -m smtpd -n -c DebuggingServer localhost:1025 > in cmd to create smtp server
 EMAIL_HOST = 'localhost'
 EMAIL_PORT = 1025
