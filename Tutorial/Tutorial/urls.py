@@ -20,5 +20,6 @@ from Tutorial import views as tutorial_views
 urlpatterns = [
     path('',tutorial_views.login_redirect, name = 'login_redirect'),
     path('admin/', admin.site.urls),
-    path('account/', include(('accounts.urls', 'accounts'), namespace='accounts')),
+    path('account/', include('accounts.urls')),
+#     path('account/', include(('accounts.urls', 'accounts'), namespace = 'accounts')),
 ]
