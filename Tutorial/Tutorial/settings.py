@@ -123,15 +123,30 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'accounts/static/accounts/media')
+
 LOGIN_REDIRECT_URL = '/account/'
 
 LOGIN_URL = '/account/login/'
 
 LOGIN_EXEMPT_URLS = (
     r'account/logout/',
-    r'account/register/'
+    r'account/register/',
+    r'account/reset-password/',
+    r'account/reset-password/done/',
+    r'account/reset-password/confirm/(?P<uidb64>[0-9A-Za-z]+)-(?P<token>.+)/',
+    r'account/reset-password/complete/'
 )
 
 # run < python -m smtpd -n -c DebuggingServer localhost:1025 > in cmd to create smtp server
 EMAIL_HOST = 'localhost'
 EMAIL_PORT = 1025
+
+# http://sems.sas.com/bess/get?id=-108606.-5:-hx1ybsml:rzzb.1erfcbafrf0&RZNVY=ebanyq.sbafrpn@fnf.pbz&nccvq=41315
+
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_HOST_USER = 'rajkumar.95ms@gmail.com'
+# EMAIL_HOST_PASSWORD = 'ms8438440068'
+# EMAIL_USE_SSL = True
+# EMAIL_PORT = '465'
