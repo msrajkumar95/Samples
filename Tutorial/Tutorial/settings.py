@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'accounts',
+    'home',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -126,7 +127,7 @@ STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'accounts/static/accounts/media')
 
-LOGIN_REDIRECT_URL = '/account/'
+LOGIN_REDIRECT_URL = '/home/'
 
 LOGIN_URL = '/account/login/'
 
@@ -146,7 +147,7 @@ EMAIL_PORT = 1025
 # http://sems.sas.com/bess/get?id=-108606.-5:-hx1ybsml:rzzb.1erfcbafrf0&RZNVY=ebanyq.sbafrpn@fnf.pbz&nccvq=41315
 
 # EMAIL_HOST = 'smtp.gmail.com'
-# EMAIL_HOST_USER = 'rajkumar.95ms@gmail.com'
-# EMAIL_HOST_PASSWORD = 'ms8438440068'
-# EMAIL_USE_SSL = True
-# EMAIL_PORT = '465'
+# EMAIL_HOST_USER = 'djangoframework21@gmail.com'
+# EMAIL_HOST_PASSWORD = 'django1258'
+# EMAIL_USE_TLS = True
+# EMAIL_PORT = '587'
