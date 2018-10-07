@@ -37,7 +37,3 @@ class EditProfileForm(UserChangeForm):
             'email',
             'password',
         ]
-
-class PasswordChangeForm(UserCreationForm):
-    
-    pass

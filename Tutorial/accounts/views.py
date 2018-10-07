@@ -5,15 +5,12 @@ from django.contrib.auth.forms import PasswordChangeForm
 
 # Create your views here.
 
-def home(request):
-    return render(request, 'accounts/home.html')
-
 def register(request):
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect(reverse('accounts:home'))
+            return redirect(reverse('home:home'))
     else:
         form = RegistrationForm()
         

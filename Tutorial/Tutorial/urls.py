@@ -22,6 +22,6 @@ from Tutorial import views as tutorial_views
 urlpatterns = [
     path('',tutorial_views.login_redirect, name = 'login_redirect'),
     path('admin/', admin.site.urls),
-#     path('account/', include('accounts.urls')),
     path('account/', include(('accounts.urls', 'accounts'), namespace = 'accounts')),
+    path('home/', include(('home.urls', 'home'), namespace = 'home')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
