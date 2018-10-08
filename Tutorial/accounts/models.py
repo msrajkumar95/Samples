@@ -6,7 +6,7 @@ from django.db.models.signals import post_save
 class UserProfileManager(models.Manager):
     
     def get_queryset(self):
-        return super(UserProfileManager, self).get_queryset().filter(city='Bangalore')
+        return super(UserProfileManager, self).get_queryset()#.filter(city__endswith='Bangalore')
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -14,7 +14,7 @@ class UserProfile(models.Model):
     city = models.CharField(max_length = 100, default = '')
     website = models.URLField(default = '')
     phone = models.BigIntegerField(default = 0)
-    image = models.ImageField(upload_to='profile_images', blank=True)
+    image = models.ImageField(upload_to='profile_images', default='blank-profile-picture.PNG')
     
     bangalore = UserProfileManager()
     
