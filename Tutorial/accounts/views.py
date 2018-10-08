@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, reverse
 from accounts.forms import RegistrationForm, EditProfileForm
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth.models import User
 
 # Create your views here.
 
@@ -10,6 +11,7 @@ def register(request):
         form = RegistrationForm(request.POST)
         if form.is_valid():
             form.save()
+            print('redirect something',redirect(reverse('home:home')),reverse('home:home'))
             return redirect(reverse('home:home'))
     else:
         form = RegistrationForm()
@@ -17,8 +19,12 @@ def register(request):
         args = {'form': form}
         return render(request, 'accounts/register.html', args)
 
-def view_profile(request):
-    args = {'user': request.user}
+def view_profile(request, pk = None):
+    if pk:
+        user = User.objects.get(pk=pk)
+    else:
+        user = request.user
+    args = {'user': user}
     return render(request, 'accounts/profile.html', args)
 
 def edit_profile(request):
