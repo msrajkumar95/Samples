@@ -14,7 +14,9 @@
 		<p>Description: {{ user.userprofile.description }}</p>
 		<p>City: {{ user.userprofile.city }}</p>
 		<p>Phone: {{ user.userprofile.phone }}</p>
-		<p>Website: {{ user.userprofile.website }}</p>
-		<img src="{{ user.userprofile.image.url }}" width="240">
+		<p>Website: <a href="{{ user.userprofile.website }}">{{ user.userprofile.website }}</a></p>
+		{% if user.userprofile.image %}
+			<img src="{{ user.userprofile.image.url }}" width="150" height="150>
+		{% endif %}
 	</div>
 {% endblock %}
