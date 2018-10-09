@@ -12,6 +12,9 @@ class Friend(models.Model):
     users = models.ManyToManyField(User)
     current_user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='owner', null=True)
     
+    def __str__(self):
+        return self.current_user.first_name.lower() + ' friends'
+    
     @classmethod
     def make_friend(cls, current_user, new_friend):
         friend, created = cls.objects.get_or_create(current_user=current_user)
