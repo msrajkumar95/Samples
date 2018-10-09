@@ -21,6 +21,32 @@
 				<p>Posted by {{ post.user.get_full_name }} on {{ post.created }}</p>
 			{% endfor %}
 			</ol>
+			<br>
+			<div class="table-responsive">
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>S No.</th>
+							<th>Username</th>
+							<th>Email</th>
+							<th>Phone</th>
+							<th>City</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for user in users %}
+						<tr>
+							<td>{{ user.id }}</td>
+							<td>{{ user.first_name }}</td>
+							<td>{{ user.email }}</td>
+							<td>{{ user.userprofile.phone }}</td>
+							<td>{{ user.userprofile.city }}</td>
+						</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+			
 		</div>
 		<div class="col-md-4">
 			<h2>Other People</h2>
@@ -28,11 +54,19 @@
 				<a href="{% url 'accounts:view_profile_with_pk' pk=user.pk %}">
 					<h3>{{ user.username }}</h3>
 				</a>
+				{% if user not in friends %}
+					<a href="{% url 'home:change_friend' operation='add' pk=user.pk %}">
+						<button type="button" class="btn btn-success">Add Friend</button>
+					</a>
+				{% endif %}
 			{% endfor %}
 			<h2>Friends</h2>
 			{% for friend in friends %}
 				<a href="{% url 'accounts:view_profile_with_pk' pk=friend.pk %}">
 					<h3>{{ friend.username }}</h3>
+				</a>
+				<a href="{% url 'home:change_friend' operation='remove' pk=friend.pk %}">
+					<button type="button" class="btn btn-danger">Remove Friend</button>
 				</a>
 			{% endfor %}
 		</div>
