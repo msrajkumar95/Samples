@@ -1,19 +1,59 @@
-from django.urls import path, re_path, reverse_lazy
-from accounts import views
-from django.contrib.auth import views as auth_views
+from django.shortcuts import render, redirect, reverse
+from accounts.forms import RegistrationForm, EditProfileForm
+from django.contrib.auth import update_session_auth_hash, authenticate, login
+from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth.models import User
+from django.contrib import messages
 
-# app_name = 'accounts'
+# Create your views here.
 
-urlpatterns = [
-    path('register/', views.register, name='register'),
-    path('profile/', views.view_profile, name='view_profile'),
-    re_path(r'profile/(?P<pk>\d+)/', views.view_profile, name='view_profile_with_pk'),
-    path('profile/edit/', views.edit_profile, name='edit_profile'),
-    path('profile/password/', views.change_password, name='change_password'),
-    path('login/', auth_views.LoginView.as_view(template_name='accounts/login.html'), name='login'),
-    path('logout/', auth_views.LogoutView.as_view(template_name='accounts/logout.html'), name='logout'),
-    path('reset-password/', auth_views.PasswordResetView.as_view(template_name='accounts/reset_password.html', email_template_name='accounts/reset_password_email.html', success_url=reverse_lazy('accounts:password_reset_done')), name='reset_password'),
-    path('reset-password/done/', auth_views.PasswordResetDoneView.as_view(template_name='accounts/reset_password_done.html'), name='password_reset_done'),
-    re_path(r'reset-password/confirm/(?P<uidb64>[0-9A-Za-z]+)-(?P<token>.+)/', auth_views.PasswordResetConfirmView.as_view(template_name='accounts/reset_password_confirm.html', success_url=reverse_lazy('accounts:password_reset_complete')), name='password_reset_confirm'),
-    path('reset-password/complete/', auth_views.PasswordResetCompleteView.as_view(template_name='accounts/reset_password_complete.html'), name='password_reset_complete'),
-]
+def register(request):
+    if request.method == 'POST':
+        form = RegistrationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = request.POST.get('username')
+            password = request.POST.get('password1')
+            user = authenticate(request, username=username, password=password)
+            login(request, user)
+            return redirect(reverse('home:home'))
+    else:
+        form = RegistrationForm()
+        
+    args = {'form': form}
+    return render(request, 'accounts/register.html', args)
+
+def view_profile(request, pk = None):
+    storage = messages.get_messages(request)
+    if pk:
+        user = User.objects.get(pk=pk)
+    else:
+        user = request.user
+    args = {'user': user, 'messages': storage}
+    return render(request, 'accounts/profile.html', args)
+
+def edit_profile(request):
+    if request.method == 'POST':
+        form = EditProfileForm(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            return redirect(reverse('accounts:view_profile'))
+    else:
+        form = EditProfileForm(instance = request.user)
+        
+        args = {'form': form}
+        return render(request, 'accounts/edit_profile.html', args)
+    
+def change_password(request):
+    if request.method == 'POST':
+        form = PasswordChangeForm(data=request.POST, user=request.user)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Your password has been changed successfully.')
+            update_session_auth_hash(request, form.user)
+            return redirect(reverse('accounts:view_profile'))
+    else:
+        form = PasswordChangeForm(user = request.user)
+        
+    args = {'form': form}
+    return render(request, 'accounts/change_password.html', args)
