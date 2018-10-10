@@ -14,9 +14,10 @@ class UserProfile(models.Model):
     city = models.CharField(max_length = 100, default = '')
     website = models.URLField(default = '')
     phone = models.BigIntegerField(default = 0)
-    image = models.ImageField(upload_to='profile_images', default='blank-profile-picture.PNG')
+    image = models.ImageField(upload_to='profile_images', default='empty_avatar.png')
     
     bangalore = UserProfileManager()
+    objects = models.Manager()
     
     def __str__(self):
         return self.user.username
