@@ -18,10 +18,33 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from Tutorial import views as tutorial_views
+from rest_framework import routers
+from quickstart import views
+from rest_framework.urlpatterns import format_suffix_patterns
+
+router = routers.DefaultRouter()
+router.register(r'users', views.UserViewSet)
+router.register(r'groups', views.GroupViewSet)
+router.register(r'userprofile', views.UserProfileViewSet)
+
+urlformatpatterns = [
+#     path('snippets/', views.snippet_list),
+#     path('snippets/<int:pk>/', views.snippet_detail),
+    path('snippets/', views.SnippetList.as_view()),
+    path('snippets/<int:pk>/', views.SnippetDetail.as_view()),
+    path('users/', views.UserList.as_view()),
+    path('users/<int:pk>/', views.UserDetail.as_view()),
+]
+
+urlformatpatterns = format_suffix_patterns(urlformatpatterns)
 
 urlpatterns = [
     path('',tutorial_views.login_redirect, name = 'login_redirect'),
     path('admin/', admin.site.urls),
+    path('drf/', include(router.urls)),
     path('account/', include(('accounts.urls', 'accounts'), namespace = 'accounts')),
     path('home/', include(('home.urls', 'home'), namespace = 'home')),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + urlformatpatterns
+
+

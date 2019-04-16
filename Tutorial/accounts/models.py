@@ -14,7 +14,7 @@ class UserProfile(models.Model):
     city = models.CharField(max_length = 100, default = '')
     website = models.URLField(default = '')
     phone = models.BigIntegerField(default = 0)
-    image = models.ImageField(upload_to='profile_images', default='empty_avatar.png')
+    image = models.ImageField(upload_to='profile_images', default='empty_avatar.jpg')
     
     bangalore = UserProfileManager()
     objects = models.Manager()

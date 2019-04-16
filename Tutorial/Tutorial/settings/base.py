@@ -13,7 +13,7 @@ SECRET_KEY = 'c(_=(x7qzw!s4d$w9_3e-hda8ke*tvr6yp@#qlzxt+s6$o!&tw'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['www.raju.com', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -21,6 +21,8 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'accounts',
     'home',
+    'rest_framework',
+    'quickstart.apps.QuickstartConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -132,6 +134,11 @@ LOGIN_EXEMPT_URLS = (
     r'account/reset-password/complete/'
 )
 
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10
+}
+
 # run < python -m smtpd -n -c DebuggingServer localhost:1025 > in cmd to create smtp server
 # EMAIL_HOST = 'localhost'
 # EMAIL_PORT = 1025
@@ -140,6 +147,6 @@ LOGIN_EXEMPT_URLS = (
 
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'djangoframework21@gmail.com'
-EMAIL_HOST_PASSWORD = 'django1258'
+EMAIL_HOST_PASSWORD = 'ms8438440068'
 EMAIL_USE_TLS = True
 EMAIL_PORT = '587'

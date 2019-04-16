@@ -15,51 +15,85 @@
 				<button type="submit">Submit</button>
 			</form>
 			<p>{{ text }}</p>
-			<ol>
+			<ul>
 			{% for post in posts %}
 				<li>{{ post.post }}</li>
-				<p>Posted by {{ post.user.get_full_name }} on {{ post.created }}</p>
+				<p>Posted by {{ post.user.get_full_name }} on {{ post.created }}
+					{% if post.created.day < post.updated.day %}
+						and updated on {{ post.updated }}
+					{% endif %}
+				</p>
 			{% endfor %}
-			</ol>
-			<br>
-			<div class="table-responsive">
+			</ul>
+      		<br>
+			<div class="table-responsive" style="white-space: nowrap;">
 				<table class="table table-striped">
+					<!-- <div style="width: 200px; height: 10px;"> -->
 					<thead>
 						<tr>
 							<th>S No.</th>
-							<th>Username</th>
-							<th>Email</th>
-							<th>Phone</th>
-							<th>City</th>
+							<th>User ID</th>
+							<th>Post Description</th>
 						</tr>
 					</thead>
+					<!-- </div> -->
+					<!-- <div style="width: 500px; height: 400px;"> -->
 					<tbody>
-						{% for user in users %}
+						{% for post in posts %}
 						<tr>
-							<td>{{ user.id }}</td>
-							<td>{{ user.first_name }}</td>
-							<td>{{ user.email }}</td>
-							<td>{{ user.userprofile.phone }}</td>
-							<td>{{ user.userprofile.city }}</td>
+							<td>{{ post.id }}</td>
+							<td>{{ post.user_id }}</td>
+							<td>{{ post.post }}</td>
 						</tr>
 						{% endfor %}
 					</tbody>
+					<!-- </div> -->
 				</table>
 			</div>
 			
 		</div>
 		<div class="col-md-4">
 			<h2>Other People</h2>
+			<!-- <div class="col-md-2">
+				{% for user in users %}
+					{% if user not in friends %}
+						<img src="{{ user.userprofile.image.url }}" width="30" height="30">
+					{% endif %}
+				{% endfor %}
+			</div>
+			<div class="col-md-6">
+				{% for user in users %}
+					{% if user not in friends %}
+						<a href="{% url 'accounts:view_profile_with_pk' pk=user.pk %}">
+							<h4>{{ user.username }}</h4>
+						</a>
+					{% endif %}
+				{% endfor %}
+			</div>
+			<div class="col-md-4">
+				{% for user in users %}
+					{% if user not in friends %}
+						<a href="{% url 'home:change_friend' operation='add' pk=user.pk %}">
+							<button type="button" class="btn btn-success">Add Friend</button>
+						</a>
+					{% endif %}
+				{% endfor %}
+			</div> -->
+			
 			{% for user in users %}
+				{% if user not in friends %}
 				<a href="{% url 'accounts:view_profile_with_pk' pk=user.pk %}">
+					<img src="{{ user.userprofile.image.url }}" width="35" height="35">
 					<h3>{{ user.username }}</h3>
 				</a>
-				{% if user not in friends %}
-					<a href="{% url 'home:change_friend' operation='add' pk=user.pk %}">
-						<button type="button" class="btn btn-success">Add Friend</button>
-					</a>
+				<a href="{% url 'home:change_friend' operation='add' pk=user.pk %}">
+					<button type="button" class="btn btn-success">Add Friend</button>
+				</a>
+				<br>
+				<br>
 				{% endif %}
 			{% endfor %}
+			</div>
 			<h2>Friends</h2>
 			{% for friend in friends %}
 				<a href="{% url 'accounts:view_profile_with_pk' pk=friend.pk %}">

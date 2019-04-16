@@ -5,6 +5,8 @@ from django.contrib.auth.models import User
 from home.forms import HomeForm
 from home.models import Post, Friend
 
+import logging
+
 class HomeView(TemplateView):
     template_name = 'home/home.html'
     
@@ -21,6 +23,7 @@ class HomeView(TemplateView):
     
     def post(self, request):
         form = HomeForm(request.POST)
+        
         if form.is_valid():
             post = form.save(commit=False)
             post.user = request.user

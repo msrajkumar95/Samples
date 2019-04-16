@@ -141,13 +141,13 @@ LOGIN_EXEMPT_URLS = (
 )
 
 # run < python -m smtpd -n -c DebuggingServer localhost:1025 > in cmd to create smtp server
-EMAIL_HOST = 'localhost'
-EMAIL_PORT = 1025
+# EMAIL_HOST = 'localhost'
+# EMAIL_PORT = 1025
 
 # http://sems.sas.com/bess/get?id=-108606.-5:-hx1ybsml:rzzb.1erfcbafrf0&RZNVY=ebanyq.sbafrpn@fnf.pbz&nccvq=41315
 
-# EMAIL_HOST = 'smtp.gmail.com'
-# EMAIL_HOST_USER = 'djangoframework21@gmail.com'
-# EMAIL_HOST_PASSWORD = 'django1258'
-# EMAIL_USE_TLS = True
-# EMAIL_PORT = '587'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'djangoframework21@gmail.com'
+EMAIL_HOST_PASSWORD = 'django1258'
+EMAIL_USE_TLS = True
+EMAIL_PORT = '587'

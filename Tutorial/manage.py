@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#! C:\Users\lavan\Envs\env1\Scripts\python.exe
 import os
 import sys
 
