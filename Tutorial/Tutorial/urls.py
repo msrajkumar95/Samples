@@ -44,6 +44,7 @@ urlpatterns = [
     path('drf/', include(router.urls)),
     path('account/', include(('accounts.urls', 'accounts'), namespace = 'accounts')),
     path('home/', include(('home.urls', 'home'), namespace = 'home')),
+    path('paytm/', include(('paytm.urls', 'paytm'), namespace = 'paytm')),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + urlformatpatterns
 

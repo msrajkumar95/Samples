@@ -24,7 +24,7 @@
 		<p>Phone: {{ user.userprofile.phone }}</p>
 		<p>Website: <a href="{{ user.userprofile.website }}">{{ user.userprofile.website }}</a></p>
 		{% if user.userprofile.image %}
-			<img src="{{ user.userprofile.image.url }}" width="150" height="150>
+			<img src="{{ user.userprofile.image.url }}" width="150" height="150">
 		{% endif %}		
 	</div>
 {% endblock %}

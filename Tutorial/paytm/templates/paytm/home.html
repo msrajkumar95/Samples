@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block head %}
+	<title>Merchant Check Out Page</title>
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<h3>Rajkumar Technologies Pvt Ltd.</h3>
+		<br>
+		<form method="post" align='center' action="{% url 'paytm:payment' %}">
+			{% csrf_token %}
+			<input type="number" name="amount" min="1" max="50000">
+			<br>
+			<br>
+			<button type="submit" class="btn btn-primary">Proceed to pay</button>
+		</form>
+		<br>
+		<a class="btn btn-secondary" href="{% url 'home:home' %}" role="button">Back</a>
+	</div>
+{% endblock %}

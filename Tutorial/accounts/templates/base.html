@@ -36,6 +36,7 @@
 					<ul class="nav navbar-nav">
 						<li><a href="{% url 'home:home' %}">Home</a></li>
 						<li><a href="{% url 'accounts:view_profile' %}">Profile</a></li>
+						<li><a href="{% url 'paytm:home' %}">Payment</a></li>
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
 						<li><a 
@@ -68,8 +69,8 @@
 					
 				{% endif %}
 				
-	        	</div><!--/.nav-collapse -->
-	    	</div><!--/.container-fluid -->
+	        	</div>
+	    	</div>
 		</nav>
 		{% block body %}
 			<h2>Base</h2>

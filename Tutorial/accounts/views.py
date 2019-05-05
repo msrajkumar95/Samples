@@ -4,6 +4,7 @@ from django.contrib.auth import update_session_auth_hash, authenticate, login
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.models import User
 from django.contrib import messages
+from django.conf import settings
 
 # Create your views here.
 

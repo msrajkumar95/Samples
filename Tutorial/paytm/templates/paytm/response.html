@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block head %}
+	<title>Transaction Status</title>
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<h3>Rajkumar Technologies Pvt Ltd.</h3>
+		<br>
+		<h4>Transaction completed</h4>
+		<br>
+		<p>Below are the transaction details</p>
+		<br>
+		{% for key,value in paytm.items %}
+		    {{key}} =  {{value}} <br>
+		{% endfor %}
+		<br>
+		<a class="btn btn-secondary" href="{% url 'home:home' %}" role="button">Back</a>
+	</div>
+{% endblock %}
