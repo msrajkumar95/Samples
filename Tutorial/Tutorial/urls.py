@@ -39,7 +39,8 @@ urlformatpatterns = [
 urlformatpatterns = format_suffix_patterns(urlformatpatterns)
 
 urlpatterns = [
-    path('',tutorial_views.login_redirect, name = 'login_redirect'),
+    #path('',tutorial_views.login_redirect, name = 'login_redirect'),
+	path('',tutorial_views.web_home, name = 'web_home'),
     path('admin/', admin.site.urls),
     path('drf/', include(router.urls)),
     path('account/', include(('accounts.urls', 'accounts'), namespace = 'accounts')),
