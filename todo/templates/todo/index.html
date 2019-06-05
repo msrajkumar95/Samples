@@ -3,23 +3,23 @@
 	<head>
 		<meta charset="utf-8">
 		<title>To Do List</title>
-		
 		{% load static %}
+		<link rel="stylesheet" href="{% static 'css/todo.css' %}">
 	</head>
 	<body ng-app="toDo" ng-controller="toDoController">
 		<h1>Todo List</h1>
 		
-		<form ng-submit="todoAdd()">
-			<input type="text" ng-model="todoInput" placeholder="Add a new to do...">
-			<input type="submit" value="Submit">
+		<form ng-submit="add()">
+			<input type="text" ng-model="todoInput" placeholder="Add a new todo task...">
+			<button type="submit">Add Task</button>
 		</form>
 		<br>
 		<div ng-repeat="todo in todoList">
-			<input type="checkbox" ng-model="todo.done"><span ng-bind="todo.todoText"></span>
+			<input type="checkbox" ng-model="todo.done"><span ng-bind="todo.task"></span>
 		</div>
 		
 		<p>
-			<button ng-click="remove()">Done</button>
+			<button class="done" ng-click="remove()">Done</button>
 		</p>
 		
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.js"></script>
