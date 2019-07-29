@@ -21,7 +21,7 @@ form > button {
 	border-radius: 10px;
 }
 
-.done {
+.delete, .update {
 	font-size: 14px;
 	border-radius: 10px;
 	border-color: lightblue;

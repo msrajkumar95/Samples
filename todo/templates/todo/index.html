@@ -8,20 +8,21 @@
 	</head>
 	<body ng-app="toDo" ng-controller="toDoController">
 		<h1>Todo List</h1>
-		
+
 		<form ng-submit="add()">
 			<input type="text" ng-model="todoInput" placeholder="Add a new todo task...">
 			<button type="submit">Add Task</button>
 		</form>
 		<br>
 		<div ng-repeat="todo in todoList">
-			<input type="checkbox" ng-model="todo.done"><span ng-bind="todo.task"></span>
+			<input type="checkbox" ng-model="todo.done"><a {% verbatim %} ng-href="/api/todo/{{todo.id}}" {% endverbatim %} ng-bind="todo.task"></a>
 		</div>
-		
+
 		<p>
-			<button class="done" ng-click="remove()">Done</button>
+			<button class="delete" ng-click="delete()">Delete</button>
+			<button class="update" ng-click="update()">Update</button>
 		</p>
-		
+
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.js"></script>
 		<script src="{% static 'js/todo.js' %}"></script>
 	</body>

@@ -16,6 +16,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 	'rest_framework',
+	'rest_framework_swagger',
 	'todo',
 ]
 
@@ -53,7 +54,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'todo',
-		'USER': 'msrajkumar95',
+		'USER': 'root',
 		'HOST': 'localhost',
     }
 }
