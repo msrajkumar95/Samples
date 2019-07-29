@@ -11,7 +11,7 @@ constantly==15.1.0
 cryptography==2.3.1
 cssselect==1.0.3
 decorator==4.3.0
-Django==2.2
+Django>=2.2
 django-tastypie==0.14.2
 djangorestframework==3.9.2
 et-xmlfile==1.0.1
@@ -58,7 +58,7 @@ shellescape==3.4.1
 six==1.11.0
 sqlparse==0.3.0
 traitlets==4.3.2
-Twisted==18.9.0
+twisted>=19.2.1
 urllib3>=1.24.2
 virtualenv==16.0.0
 virtualenvwrapper-win==1.2.5
