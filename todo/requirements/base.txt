@@ -16,7 +16,7 @@ django-tastypie==0.14.2
 djangorestframework==3.9.2
 et-xmlfile==1.0.1
 ftpclient==0.1
-httpie==1.0.2
+httpie>=1.0.2
 hyperlink==18.0.0
 idna==2.7
 incremental==17.5.0
